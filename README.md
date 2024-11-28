@@ -10,4 +10,4 @@ The code is currently being organised and will be available soon. Please check b
 
 ## Acknowledgments
 
-We extend our gratitude to the BioNLP 2024 RRG24 Shared Task organisers for providing the baseline pipeline ViLMedic and curating these challenging and exciting tasks. We also wish to acknowledge the University of Glasgow for providing the essential equipment and resources that supported our work.
+We extend our gratitude to the BioNLP 2024 RRG24 Shared Task organisers for providing the baseline pipeline ViLMedic and curating these challenging and exciting tasks.
