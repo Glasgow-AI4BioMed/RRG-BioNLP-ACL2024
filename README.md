@@ -14,3 +14,19 @@ The code is currently being organised and will be available soon. Please check b
 ## Acknowledgments
 
 We extend our gratitude to the BioNLP 2024 RRG24 Shared Task organisers for providing the baseline pipeline ViLMedic and curating these challenging and exciting tasks.
+
+## Citation
+
+If you find our paper useful in your research and applications, please cite using this BibTeX:
+```BibTeX
+@inproceedings{Zhang_2024,
+   title={Gla-AI4BioMed at RRG24: Visual Instruction-tuned Adaptation for Radiology Report Generation},
+   url={http://dx.doi.org/10.18653/v1/2024.bionlp-1.54},
+   DOI={10.18653/v1/2024.bionlp-1.54},
+   booktitle={Proceedings of the 23rd Workshop on Biomedical Natural Language Processing},
+   publisher={Association for Computational Linguistics},
+   author={Zhang, Xi and Meng, Zaiqiao and Lever, Jake and Ho, Edmond S.L.},
+   year={2024},
+   pages={624–634}
+}
+```
