@@ -1,6 +1,7 @@
 # Gla-AI4BioMed at RRG24: Visual Instruction-tuned Adaptation for Radiology Report Generation
 [![arXiv](https://img.shields.io/badge/Arxiv-2412.04954-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2412.04954) 
-[![hf_space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue)]([https://huggingface.co/X-iZhang/libra-v1.0-7b](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp))
+[![hf_space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-green)](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp)
+[![hf_space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue)](https://huggingface.co/collections/X-iZhang/gla-ai4biomed-at-rrg24-67747a3d615ea14619e7a23e)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg?)](https://github.com/X-iZhang/RRG-BioNLP-ACL2024/blob/main/LICENSE) 
 
 ## Overview
