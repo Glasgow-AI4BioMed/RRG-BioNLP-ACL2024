@@ -8,9 +8,26 @@
 
 We introduce a radiology-focused visual language model designed to generate radiology reports from chest X-rays. Building on previous findings that large language models (LLMs) can acquire multimodal capabilities when aligned with pretrained vision encoders, we demonstrate similar potential with chest X-ray images. Our model combines an image encoder with a fine-tuned LLM based on the Vicuna-7B architecture, enabling it to generate different sections of a radiology report with notable accuracy.
 ![architecture](./assets/architecture.png)
-## Project Status
 
-The code is currently being organised and will be available soon. Please check back later for updates.
+## Project
+
+Please refer to the [**Libra repository**](https://github.com/X-iZhang/Libra) for code and environment details, as this project is compatible with it. Below is a brief outline:
+
+1. **Environment Setup**  
+   - Create and activate a new conda environment (e.g., `libra`).
+   - Install the required dependencies (e.g., `pip install -e .`).  
+   - For more detailed instructions, see [Libra's README](https://github.com/X-iZhang/Libra/blob/main/README.md).
+
+2. **Model weight**
+   
+| Version | Base LLM | Vision Encoder| Checkpoint |
+| ------- | ------- | ------- | ------- |
+| Libra-v0.5-impressions| Vicuna-7B | CLIP | [libra-v0.5-impressions](https://huggingface.co/X-iZhang/libra-v0.5-impressions) |
+| Libra-v0.5-findings | Vicuna-7B | CLIP | [libra-v0.5-findings](https://huggingface.co/X-iZhang/libra-v0.5-findings) |
+
+3. **Data Preparation**  
+   - Refer to the instructions in **Libra** regarding data structure, preprocessing, and any additional script usage.
+
 
 ## Acknowledgments
 
