@@ -41,7 +41,7 @@ pip install -e .
 - For more detailed instructions, see [Libra's README](https://github.com/X-iZhang/Libra/tree/main#install).
 
 
-## **Model weight**
+## **Model Weight**
    
 | Version | Base LLM | Vision Encoder| Checkpoint |
 | ------- | ------- | ------- | ------- |
