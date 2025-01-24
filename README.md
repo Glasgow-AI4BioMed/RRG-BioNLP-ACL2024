@@ -13,6 +13,14 @@ We introduce a radiology-focused visual language model designed to generate radi
 ![architecture](./assets/architecture.png)
 
 
+## Contents
+- [Install](#install)
+- [Model weight](#model-weights)
+- [Quick Start](#quick-start)
+    - [CLI Inference](#cli-inference)
+    - [Script Inference](#script-inference)
+- [Data Preparation](#data-preparation)
+
 ## Install
 
 Please refer to the [**Libra repository**](https://github.com/X-iZhang/Libra) for code and environment details, as this project is compatible with it. Below is a brief outline:
