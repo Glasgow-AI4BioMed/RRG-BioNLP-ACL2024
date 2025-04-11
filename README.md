@@ -4,8 +4,11 @@
 [![arXiv](https://img.shields.io/badge/Arxiv-2412.04954-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2412.04954) 
 [![hf_space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-green)](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg?)](https://github.com/X-iZhang/RRG-BioNLP-ACL2024/blob/main/LICENSE) 
-[![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FX-iZhang%2FRRG-BioNLP-ACL2024a&count_bg=%2300C0FF&title_bg=%23004080&icon=&icon_color=%23FFFFFF&title=Views)](https://hits.seeyoufarm.com)
+<!--[![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FX-iZhang%2FRRG-BioNLP-ACL2024a&count_bg=%2300C0FF&title_bg=%23004080&icon=&icon_color=%23FFFFFF&title=Views)](https://hits.seeyoufarm.com)-->
 
+## 🔥 News
+- **[20 Jun 2024]** 🏆 Gla-AI4BioMed ranked **4th** place in the Shared Task on Large-Scale Radiology Report Generation @ [BioNLP ACL'24](https://aclanthology.org/2024.bionlp-1.7/)! 🎉
+  
 ## Overview
 
 We introduce a radiology-focused visual language model designed to generate radiology reports from chest X-rays. Building on previous findings that large language models (LLMs) can acquire multimodal capabilities when aligned with pretrained vision encoders, we demonstrate similar potential with chest X-ray images. Our model combines an image encoder with a fine-tuned LLM based on the Vicuna-7B architecture, enabling it to generate different sections of a radiology report with notable accuracy.
@@ -15,12 +18,13 @@ We introduce a radiology-focused visual language model designed to generate radi
 
 ## Contents
 - [Install](#install)
-- [Model weight](#model-weights)
+- [Model Weights](#model-weights)
 - [Quick Start](#quick-start)
     - [CLI Inference](#cli-inference)
     - [Script Inference](#script-inference)
 - [Data Preparation](#data-preparation)
-
+- [Evaluation](#evaluation)
+  
 ## Install
 
 Please refer to the [**Libra repository**](https://github.com/X-iZhang/Libra) for code and environment details, as this project is compatible with it. Below is a brief outline:
@@ -41,13 +45,15 @@ pip install -e .
 - For more detailed instructions, see [Libra's README](https://github.com/X-iZhang/Libra/tree/main#install).
 
 
-## **Model Weight**
-   
-| Version | Base LLM | Vision Encoder| Checkpoint |
-| ------- | ------- | ------- | ------- |
-| Libra-v0.5-impressions| Vicuna-7B | CLIP | [libra-v0.5-impressions](https://huggingface.co/X-iZhang/libra-v0.5-impressions) |
-| Libra-v0.5-findings | Vicuna-7B | CLIP | [libra-v0.5-findings](https://huggingface.co/X-iZhang/libra-v0.5-findings) |
+## Model Weights
+### Libra-v0.5
 
+| Version | Size | Projector | Base LLM | Vision Encoder| Checkpoint |
+| ------- | ------- | ------- | ------- | ------- | ------- |
+| Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [libra-v0.5-findings](https://huggingface.co/X-iZhang/libra-v0.5-findings) |
+| Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [libra-v0.5-impressions](https://huggingface.co/X-iZhang/libra-v0.5-impressions) |
+
+*Note: These two models are fine-tuned for `Findings` and `Impression` section generation.*
 ## Quick Start
 
 ### CLI Inference
@@ -91,6 +97,31 @@ libra_eval(
 
 ## Data Preparation
 We use the officially provided [dataset](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp). For information on data structure, preprocessing, and additional script usage, please refer to the instructions in **Libra**. For detailed formats related to data training or evaluation, see [`Custom_Data.md`](https://github.com/X-iZhang/Libra/blob/main/CUSTOM_DATA.md).
+
+## Evaluation
+
+To ensure reproducibility and output quality, we evaluate our model using the beam search strategy.
+
+```Shell
+python -m libra.eval.eval_vqa_libra \
+    --model-path X-iZhang/libra-v0.5-impressions \
+    --question-file ./path/to/questions_file.jsonl \
+    --image-folder ./path/to/image/folder \
+    --answers-file /path/to/answer-file.jsonl \
+    --num_beams 10 \
+    --length_penalty 2 \
+    --num_return_sequences 3 \
+    --max_new_tokens 1024 \
+    --conv-mode libra_v0
+```
+
+You can evaluate models on your custom datasets by converting your dataset to the [JSONL format](https://github.com/X-iZhang/Libra/blob/main/CUSTOM_DATA.md#evaluation-dataset-format) and evaluating using [`eval_vqa_libra.py`](https://github.com/X-iZhang/Libra/blob/main/libra/eval/eval_vqa_libra.py).
+
+Additionally, you can execute the evaluation using the command line. For detailed instructions, see [`libra_eval.sh`](https://github.com/X-iZhang/Libra/blob/main/scripts/eval/libra_eval.sh).
+
+```bash
+bash ./scripts/eval/libra_eval.sh beam
+```
 
 ## Acknowledgments 🙏
 
