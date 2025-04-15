@@ -54,8 +54,27 @@ pip install -e .
 | Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [libra-v0.5-impressions](https://huggingface.co/X-iZhang/libra-v0.5-impressions) |
 
 *Note: These two models are fine-tuned for `Findings` and `Impression` section generation.*
-## Quick Start
 
+### Projector weights
+
+These projector weights were pre-trained for visual instruction tuning on chest X-ray to text generation tasks. They can be directly used to initialise your model for multimodal fine-tuning in similar clinical domains.
+
+⚠️ Important Note: For compatibility, please ensure that the *projector type*, *base LLM*, *conv_mode*, and *vision encoder* exactly match those used in our projector pretraining setup. Please also ensure the following settings are correctly configured during instruction tuning:
+
+```Shell
+--mm_projector_type mlp2x_gelu \
+--mm_vision_select_layer -2 \
+--mm_vision_select_feature patch \
+--mm_use_im_start_end False \
+--mm_use_im_patch_token False \
+```
+
+| Base LLM | conv_mode | Vision Encoder | Projector | Pretrain Data | Download |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| Vicuna-7B| libra_v0 | CLIP-L-336px| MLP-2x | [Findings section](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp) | [projector](https://huggingface.co/X-iZhang/libra-v0.5-findings/resolve/main/mm_mlp2x_projector_findings.bin?download=true) |
+| Vicuna-7B | libra_v0 | CLIP-L-336px | MLP-2x | [Impression section](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp) | [projector](https://huggingface.co/X-iZhang/libra-v0.5-impressions/resolve/main/mm_mlp2x_projector_impressions.bin?download=true) |
+
+## Quick Start
 ### CLI Inference
 We support running inference using the CLI. To use our model, run:
 ```Shell
@@ -137,14 +156,24 @@ Also, we sincerely thank the following projects for their contributions:
 
 If you find our paper useful in your research and applications, please cite using this BibTeX:
 ```BibTeX
-@inproceedings{Zhang_2024,
-   title={Gla-AI4BioMed at RRG24: Visual Instruction-tuned Adaptation for Radiology Report Generation},
-   url={http://dx.doi.org/10.18653/v1/2024.bionlp-1.54},
-   DOI={10.18653/v1/2024.bionlp-1.54},
-   booktitle={Proceedings of the 23rd Workshop on Biomedical Natural Language Processing},
-   publisher={Association for Computational Linguistics},
-   author={Zhang, Xi and Meng, Zaiqiao and Lever, Jake and Ho, Edmond S.L.},
-   year={2024},
-   pages={624–634}
+@inproceedings{zhang-etal-2024-gla,
+    title = "Gla-{AI}4{B}io{M}ed at {RRG}24: Visual Instruction-tuned Adaptation for Radiology Report Generation",
+    author = "Zhang, Xi  and
+      Meng, Zaiqiao  and
+      Lever, Jake  and
+      Ho, Edmond S.L.",
+    editor = "Demner-Fushman, Dina  and
+      Ananiadou, Sophia  and
+      Miwa, Makoto  and
+      Roberts, Kirk  and
+      Tsujii, Junichi",
+    booktitle = "Proceedings of the 23rd Workshop on Biomedical Natural Language Processing",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.bionlp-1.54/",
+    doi = "10.18653/v1/2024.bionlp-1.54",
+    pages = "624--634",
 }
 ```
