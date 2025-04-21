@@ -4,7 +4,8 @@
 [![arXiv](https://img.shields.io/badge/Arxiv-2412.04954-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2412.04954) 
 [![hf_space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-green)](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp)
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg?)](https://github.com/X-iZhang/RRG-BioNLP-ACL2024/blob/main/LICENSE) 
-<!--[![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FX-iZhang%2FRRG-BioNLP-ACL2024a&count_bg=%2300C0FF&title_bg=%23004080&icon=&icon_color=%23FFFFFF&title=Views)](https://hits.seeyoufarm.com)-->
+[![Visitors](https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2FX-iZhang%2FRRG-BioNLP-ACL2024&label=Views&countColor=%23f36f43&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FX-iZhang%2FRRG-BioNLP-ACL2024)
+<!-- [![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FX-iZhang%2FRRG-BioNLP-ACL2024a&count_bg=%2300C0FF&title_bg=%23004080&icon=&icon_color=%23FFFFFF&title=Views)](https://hits.seeyoufarm.com) -->
 
 ## 🔥 News
 - **[20 Jun 2024]** 🏆 Gla-AI4BioMed ranked **4th** place in the Shared Task on Large-Scale Radiology Report Generation @ [BioNLP ACL'24](https://aclanthology.org/2024.bionlp-1.7/)! 🎉
@@ -20,6 +21,7 @@ We introduce a radiology-focused visual language model designed to generate radi
 - [Install](#install)
 - [Model Weights](#model-weights)
 - [Quick Start](#quick-start)
+    - [Concatenate Images](#concatenate-images)
     - [CLI Inference](#cli-inference)
     - [Script Inference](#script-inference)
 - [Data Preparation](#data-preparation)
@@ -75,6 +77,39 @@ These projector weights were pre-trained for visual instruction tuning on chest 
 | Vicuna-7B | libra_v0 | CLIP-L-336px | MLP-2x | [Impression section](https://huggingface.co/datasets/StanfordAIMI/rrg24-shared-task-bionlp) | [projector](https://huggingface.co/X-iZhang/libra-v0.5-impressions/resolve/main/mm_mlp2x_projector_impressions.bin?download=true) |
 
 ## Quick Start
+
+### Concatenate Images
+🧩This model supports multiple images (1 to 4) as input during training. You can use the following method to preprocess and horizontally concatenate multiple images (e.g. generating one report from several diagnostic images):
+
+```Python
+from PIL import Image
+
+def concatenate_images(images):
+    total_width = sum(img.width for img in images) + 10 * (len(images) - 1)
+    height = max(img.height for img in images)
+
+    new_img = Image.new('RGB', (total_width, height), (0, 0, 0))
+
+    current_width = 0
+    for img in images:
+        new_img.paste(img, (current_width, 0))
+        current_width += img.width + 10  # Add a 10px black separator between images
+
+    return new_img
+
+# Load images (make sure the paths are correct or use your own images)
+img1 = Image.open('chest_x_ray_example1.jpg')
+img2 = Image.open('chest_x_ray_example2.jpg')
+img3 = Image.open('chest_x_ray_example3.jpg')
+img4 = Image.open('chest_x_ray_example4.jpg')
+
+# Concatenate images
+result_img = concatenate_images([img1, img2, img3, img4])
+
+# Save the result
+result_img.save('concatenated_chest_x_ray.jpg')
+```
+
 ### CLI Inference
 We support running inference using the CLI. To use our model, run:
 ```Shell
