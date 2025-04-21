@@ -52,8 +52,8 @@ pip install -e .
 
 | Version | Size | Projector | Base LLM | Vision Encoder| Checkpoint |
 | ------- | ------- | ------- | ------- | ------- | ------- |
-| Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [libra-v0.5-findings](https://huggingface.co/X-iZhang/libra-v0.5-findings) |
-| Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [libra-v0.5-impressions](https://huggingface.co/X-iZhang/libra-v0.5-impressions) |
+| Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [Med-CXRGen-F](https://huggingface.co/X-iZhang/libra-v0.5-findings) |
+| Libra-0.5 | 7B | MLP-2x | Vicuna-7B | CLIP-L-336px | [Med-CXRGen-I](https://huggingface.co/X-iZhang/libra-v0.5-impressions) |
 
 *Note: These two models are fine-tuned for `Findings` and `Impression` section generation.*
 
