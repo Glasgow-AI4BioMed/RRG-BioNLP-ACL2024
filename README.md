@@ -20,9 +20,10 @@ We introduce a radiology-focused visual language model designed to generate radi
 ## Contents
 - [Install](#install)
 - [Model Weights](#model-weights)
-    - [Med-CXRGen (Libra-v0.5)](#med-cxrgen-(libra-v05))
+    - [Med-CXRGen (Libra-v0.5)](#med-cxrgen-libra-v05)
+    - [Projector weights](#projector-weights)
 - [Quick Start](#quick-start)
-    - [Concatenate Images](#concatenate-images)
+    - [🧩Concatenate Images](#concatenate-images)
     - [CLI Inference](#cli-inference)
     - [Script Inference](#script-inference)
 - [Data Preparation](#data-preparation)
