@@ -20,6 +20,7 @@ We introduce a radiology-focused visual language model designed to generate radi
 ## Contents
 - [Install](#install)
 - [Model Weights](#model-weights)
+    - [Med-CXRGen (Libra-v0.5)](#med-cxrgen-(libra-v05))
 - [Quick Start](#quick-start)
     - [Concatenate Images](#concatenate-images)
     - [CLI Inference](#cli-inference)
@@ -48,7 +49,7 @@ pip install -e .
 
 
 ## Model Weights
-### Libra-v0.5
+### Med-CXRGen (Libra-v0.5)
 
 | Version | Size | Projector | Base LLM | Vision Encoder| Checkpoint |
 | ------- | ------- | ------- | ------- | ------- | ------- |
