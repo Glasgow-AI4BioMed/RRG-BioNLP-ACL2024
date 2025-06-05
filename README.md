@@ -26,11 +26,14 @@ We introduce a radiology-focused visual language model designed to generate radi
 
 ## Contents
 - [Install](#install)
+  - [Step 1: Clone with submodules](#step-1-clone-with-submodules)
+  - [Step 2: Create and activate a Conda environment](#step-2-create-and-activate-a-conda-environment)
+  - [Step 3: Install Libra](#step-3-install-libra-inside-the-submodule)
 - [Model Weights](#model-weights)
     - [Med-CXRGen](#med-cxrgen-libra-v05)
     - [Projector weights](#projector-weights)
 - [Quick Start](#quick-start)
-    - [🧩 Concatenate Images](#concatenate-images)
+    - [🧩 Concatenate Images](#-concatenate-images)
     - [CLI Inference](#cli-inference)
     - [Script Inference](#script-inference)
 - [Data Preparation](#data-preparation)
@@ -38,30 +41,42 @@ We introduce a radiology-focused visual language model designed to generate radi
   
 ## Install
 
-Please refer to the [**Libra repository**](https://github.com/X-iZhang/Libra) for code and environment details, as this project is compatible with it. Below is a brief outline for quick setup:
+This project depends on [**Libra repository**](https://github.com/X-iZhang/Libra), which is included as a Git submodule (version [`v1.0.1`](https://github.com/X-iZhang/Libra/releases/tag/v1.0.1)). Below is a brief outline for quick setup:
 
-1. Clone the libra's repository 
+### Step 1: Clone with submodules
 
 ```Shell
-git clone https://github.com/X-iZhang/Libra.git
-cd Libra
+git clone --recurse-submodules https://github.com/X-iZhang/RRG-BioNLP-ACL2024.git
+cd RRG-BioNLP-ACL2024
 ```
 
-2. Create and activate a new Conda environment
+
+<details>
+<summary>  💡 Note: If you’ve already cloned without --recurse-submodules, you can run: </summary>
+
+```Shell
+git submodule update --init --recursive
+```
+
+</details>
+
+
+### Step 2: Create and activate a Conda environment
 
 ```Shell
 conda create -n cxrgen python=3.10 -y
 conda activate cxrgen
 ```
 
-3. Install dependencies
+### Step 3: Install Libra (inside the submodule)
 
 ```Shell
+cd Libra
 pip install --upgrade pip  # enable PEP 660 support
 pip install -e .
 ```
 
-- For more detailed instructions, see [Libra's README](https://github.com/X-iZhang/Libra/tree/main#install).
+🪧 For more detailed instructions, see [Libra's README](https://github.com/X-iZhang/Libra/tree/main#install).
 
 
 ## Model Weights
@@ -95,8 +110,8 @@ These projector weights were pre-trained for visual instruction tuning on chest 
 
 ## Quick Start
 
-### Concatenate Images
-🧩 This model supports multiple images (1 to 4) as input during training. You can use the following method to preprocess and horizontally concatenate multiple images (e.g. generating one report from several diagnostic images):
+### 🧩 Concatenate Images
+This model supports multiple images (1 to 4) as input during training. You can use the following method to preprocess and horizontally concatenate multiple images (e.g. generating one report from several diagnostic images):
 
 ```Python
 from PIL import Image
