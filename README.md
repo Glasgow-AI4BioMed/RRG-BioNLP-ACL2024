@@ -14,11 +14,17 @@
   - ✅ [Med-CXRGen-F](https://huggingface.co/X-iZhang/Med-CXRGen-F) for generating the `Findings` section.
   - ✅ [Med-CXRGen-I](https://huggingface.co/X-iZhang/Med-CXRGen-I) for generating the `Impression` section.
 
+<details open><summary>Model Ranking at BioNLP @ ACL2024</summary>
+
+<img src="./assets/Med-CXRGen-result.png" style="width:80%;">
+
+</details>
+
 ## Overview
 
 We introduce a radiology-focused visual language model designed to generate radiology reports from chest X-rays. Building on previous findings that large language models (LLMs) can acquire multimodal capabilities when aligned with pretrained vision encoders, we demonstrate similar potential with chest X-ray images. Our model combines an image encoder with a fine-tuned LLM based on the Vicuna-7B architecture, enabling it to generate different sections of a radiology report with notable accuracy.
 
-<details><summary>Training Framework</summary>
+<details open><summary>Training Framework</summary>
 
 ![architecture](./assets/architecture.png)
 
